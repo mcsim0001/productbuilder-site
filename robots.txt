@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mcsim0001.github.io/productbuilder-site/sitemap.xml

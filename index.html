@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Productbuilder is a native macOS app for building inspectable, distribution-ready .pkg installers with pkgbuild and productbuild."
+    />
+    <title>Productbuilder - Native macOS .pkg Installer Builder</title>
+    <link rel="icon" href="assets/productbuilder-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Productbuilder home">
+        <img src="assets/productbuilder-icon.png" alt="" />
+        <span>Productbuilder</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#guide">Guide</a>
+        <a href="#settings">Settings</a>
+        <a href="#support">Support</a>
+      </nav>
+      <a class="header-cta" href="#download">Download</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="download">
+        <div class="hero-copy">
+          <p class="eyebrow">Native macOS packaging tool</p>
+          <h1>Build distribution-ready .pkg installers without legacy project files.</h1>
+          <p class="hero-lede">
+            Productbuilder turns payloads, scripts, installer resources, signing settings,
+            and readable JSON projects into clean macOS product packages.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button primary"
+              id="download-release"
+              href="https://github.com/mcsim0001/ProductBuilder/releases"
+              data-releases-url="https://github.com/mcsim0001/ProductBuilder/releases"
+            >
+              View GitHub Releases
+            </a>
+            <a
+              class="button secondary"
+              href="#"
+              aria-disabled="true"
+              data-coming-soon="The Mac App Store listing is coming soon. Direct GitHub releases will be available first."
+            >
+              Mac App Store
+            </a>
+            <a class="button ghost" href="#support">Support Development</a>
+          </div>
+          <div class="release-card" id="release-card" data-state="loading">
+            <span class="release-status" id="release-status">Checking latest GitHub release...</span>
+            <a
+              id="release-notes"
+              href="https://github.com/mcsim0001/ProductBuilder/releases"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Release notes
+            </a>
+          </div>
+          <dl class="requirements">
+            <div>
+              <dt>Requires</dt>
+              <dd>macOS 13+</dd>
+            </div>
+            <div>
+              <dt>Built with</dt>
+              <dd>SwiftUI</dd>
+            </div>
+            <div>
+              <dt>Uses</dt>
+              <dd>pkgbuild + productbuild</dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="product-visual" aria-label="Productbuilder app preview">
+          <img
+            src="assets/screenshot-component.png"
+            alt="Productbuilder component settings with payload destination and package identifier"
+          />
+        </figure>
+      </section>
+
+      <section class="section intro" id="features">
+        <div class="section-heading">
+          <p class="eyebrow">What it does</p>
+          <h2>A focused packaging workflow for Mac developers and release engineers.</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <h3>Readable projects</h3>
+            <p>Save packaging settings as JSON so projects can be reviewed, reused, and built later.</p>
+          </article>
+          <article>
+            <h3>Component packages</h3>
+            <p>Build multi-component installers with payloads, scripts, identifiers, versions, and choices.</p>
+          </article>
+          <article>
+            <h3>Installer resources</h3>
+            <p>Add welcome, read me, license, conclusion, logo, backgrounds, and localized .lproj folders.</p>
+          </article>
+          <article>
+            <h3>Release-ready output</h3>
+            <p>Use signing identities, install domains, minimum macOS checks, and optional uninstall scripts.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section screenshots" aria-label="Productbuilder workflow screenshots">
+        <div class="section-heading">
+          <p class="eyebrow">Real workflow</p>
+          <h2>Package Productbuilder with Productbuilder.</h2>
+          <p>
+            The app keeps packaging decisions, installer previews, build commands, and final output
+            in one native macOS workflow.
+          </p>
+        </div>
+        <div class="screenshot-grid">
+          <figure class="screenshot-card wide">
+            <img
+              src="assets/screenshot-build-log.png"
+              alt="Productbuilder product settings and live build log while creating a signed package"
+            />
+            <figcaption>
+              <strong>Build with visible commands</strong>
+              <span>Review the exact pkgbuild and productbuild steps as the package is created.</span>
+            </figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img
+              src="assets/screenshot-product.png"
+              alt="Productbuilder product metadata, signing, install domains, and uninstaller settings"
+            />
+            <figcaption>
+              <strong>Configure product rules</strong>
+              <span>Set metadata, signing, domains, requirements, and uninstall output.</span>
+            </figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img
+              src="assets/screenshot-preview.png"
+              alt="Productbuilder installer preview screen showing the welcome page"
+            />
+            <figcaption>
+              <strong>Preview the installer</strong>
+              <span>Check the user-facing Installer flow before building the final .pkg.</span>
+            </figcaption>
+          </figure>
+          <figure class="screenshot-card success">
+            <img
+              src="assets/screenshot-build-finished.png"
+              alt="Productbuilder build finished dialog with product package and uninstaller output"
+            />
+            <figcaption>
+              <strong>Finish with output paths</strong>
+              <span>Confirm the product package and optional uninstall script were generated.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section workflow" id="guide">
+        <div class="section-heading">
+          <p class="eyebrow">Guide</p>
+          <h2>From files to a signed installer in a clear sequence.</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span>01</span>
+            <div>
+              <h3>Add components</h3>
+              <p>Create one component for each app, helper, resource pack, or optional install group.</p>
+            </div>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <h3>Define payloads</h3>
+              <p>Choose files, folders, folder contents, or empty directories and set destination paths.</p>
+            </div>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <h3>Configure product settings</h3>
+              <p>Set name, identifier, version, output file, install domains, signing, and requirements.</p>
+            </div>
+          </li>
+          <li>
+            <span>04</span>
+            <div>
+              <h3>Design installer pages</h3>
+              <p>Attach branded installer resources and preview how the package will appear to users.</p>
+            </div>
+          </li>
+          <li>
+            <span>05</span>
+            <div>
+              <h3>Build and inspect</h3>
+              <p>Generate the final .pkg and review the exact pkgbuild and productbuild commands.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section settings" id="settings">
+        <div class="section-heading">
+          <p class="eyebrow">Settings</p>
+          <h2>Productbuilder keeps the important packaging decisions visible.</h2>
+        </div>
+        <div class="settings-list">
+          <article>
+            <h3>Component</h3>
+            <p>Payload kind, destination path, ownership, choice behavior, preinstall, and postinstall scripts.</p>
+          </article>
+          <article>
+            <h3>Product</h3>
+            <p>Installer name, identifier, version, output folder, minimum macOS, domains, signing, uninstaller.</p>
+          </article>
+          <article>
+            <h3>Design</h3>
+            <p>Installer pages, localization variants, package icon, light background, and dark background.</p>
+          </article>
+          <article>
+            <h3>Preview</h3>
+            <p>Installer-facing presentation metadata before you create the final package.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section pricing">
+        <div class="section-heading">
+          <p class="eyebrow">Monetization direction</p>
+          <h2>Free packaging first, professional distribution later.</h2>
+        </div>
+        <div class="plans">
+          <article>
+            <h3>Free</h3>
+            <p>Build a basic unsigned .pkg with one component and a readable JSON project.</p>
+            <strong>$0</strong>
+          </article>
+          <article class="highlight">
+            <h3>Pro, later</h3>
+            <p>Signing, multi-component installers, scripts, branding, localization, uninstaller, and CLI automation.</p>
+            <strong>Planned</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="section donate" id="support">
+        <div class="section-heading">
+          <p class="eyebrow">Support</p>
+          <h2>Help keep Productbuilder improving.</h2>
+          <p>
+            Donations support development and are not a license purchase. Payment links are placeholders
+            until the official mono and Donatello pages are connected.
+          </p>
+        </div>
+        <div class="donate-actions">
+          <a
+            class="button primary"
+            href="#"
+            aria-disabled="true"
+            data-coming-soon="The mono donation page is in progress and will be connected soon."
+          >
+            Support via mono
+          </a>
+          <a
+            class="button secondary"
+            href="#"
+            aria-disabled="true"
+            data-coming-soon="The Donatello support page is in progress and will be connected soon."
+          >
+            Support via Donatello
+          </a>
+        </div>
+      </section>
+
+      <section class="section support" id="contact">
+        <div class="support-copy">
+          <p class="eyebrow">Support</p>
+          <h2>Built for maintainers who want packaging to stay inspectable.</h2>
+          <p>
+            Productbuilder is designed for developers, release engineers, and macOS app maintainers
+            who need a focused alternative to legacy package-authoring workflows.
+          </p>
+        </div>
+        <a
+          class="button ghost"
+          href="#"
+          aria-disabled="true"
+          data-coming-soon="The support inbox is coming soon. For now, use the GitHub repository for release updates."
+        >
+          Contact Support
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Productbuilder</span>
+      <span>Native macOS .pkg installer builder</span>
+    </footer>
+    <div class="coming-soon-overlay" id="coming-soon-overlay" hidden>
+      <div
+        class="coming-soon-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="coming-soon-title"
+        aria-describedby="coming-soon-message"
+      >
+        <button class="coming-soon-close" type="button" aria-label="Close">&times;</button>
+        <p class="eyebrow">Coming soon</p>
+        <h2 id="coming-soon-title">In progress</h2>
+        <p id="coming-soon-message">This feature is in progress and will be available soon.</p>
+      </div>
+    </div>
+    <script>
+      const releaseEndpoint = "https://api.github.com/repos/mcsim0001/ProductBuilder/releases/latest";
+      const releaseCard = document.querySelector("#release-card");
+      const releaseStatus = document.querySelector("#release-status");
+      const releaseNotes = document.querySelector("#release-notes");
+      const downloadRelease = document.querySelector("#download-release");
+      const comingSoonOverlay = document.querySelector("#coming-soon-overlay");
+      const comingSoonMessage = document.querySelector("#coming-soon-message");
+      const comingSoonClose = document.querySelector(".coming-soon-close");
+      const releaseFilePattern = /\.(dmg|pkg|zip)$/i;
+
+      function openComingSoon(message) {
+        comingSoonMessage.textContent = message || "This feature is in progress and will be available soon.";
+        comingSoonOverlay.hidden = false;
+        comingSoonClose.focus();
+      }
+
+      function closeComingSoon() {
+        comingSoonOverlay.hidden = true;
+      }
+
+      document.querySelectorAll("[data-coming-soon]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          openComingSoon(link.dataset.comingSoon);
+        });
+      });
+
+      comingSoonClose.addEventListener("click", closeComingSoon);
+      comingSoonOverlay.addEventListener("click", (event) => {
+        if (event.target === comingSoonOverlay) {
+          closeComingSoon();
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !comingSoonOverlay.hidden) {
+          closeComingSoon();
+        }
+      });
+
+      function setReleaseFallback(message) {
+        releaseCard.dataset.state = "fallback";
+        releaseStatus.textContent = message;
+        releaseNotes.textContent = "View releases";
+        downloadRelease.textContent = "View GitHub Releases";
+        downloadRelease.href = downloadRelease.dataset.releasesUrl;
+      }
+
+      async function loadLatestRelease() {
+        try {
+          const response = await fetch(releaseEndpoint, {
+            headers: { Accept: "application/vnd.github+json" },
+          });
+
+          if (!response.ok) {
+            setReleaseFallback("No public release is available yet.");
+            return;
+          }
+
+          const release = await response.json();
+          const assets = Array.isArray(release.assets) ? release.assets : [];
+          const downloadAsset =
+            assets.find((asset) => releaseFilePattern.test(asset.name || "")) || assets[0];
+
+          releaseCard.dataset.state = "ready";
+          releaseStatus.textContent = `Latest release: ${release.tag_name || release.name || "available"}`;
+          releaseNotes.href = release.html_url || downloadRelease.dataset.releasesUrl;
+          releaseNotes.textContent = "Release notes";
+
+          if (downloadAsset?.browser_download_url) {
+            downloadRelease.textContent = "Download for macOS";
+            downloadRelease.href = downloadAsset.browser_download_url;
+          } else {
+            downloadRelease.textContent = "View GitHub Release";
+            downloadRelease.href = release.html_url || downloadRelease.dataset.releasesUrl;
+            releaseStatus.textContent += " - no downloadable asset attached yet.";
+          }
+        } catch (error) {
+          setReleaseFallback("GitHub release status is temporarily unavailable.");
+        }
+      }
+
+      loadLatestRelease();
+    </script>
+  </body>
+</html>
